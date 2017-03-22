@@ -1,5 +1,6 @@
 package css.hcarlson1.slidingfragments;
 
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,15 +11,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
-import android.widget.TextView;
+public class MainActivity extends AppCompatActivity
+        implements FirstFragment.OnFragmentInteractionListener
+{
 
-public class MainActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onFragment1Interaction(Uri uri) {
+        // Do stuff -- process messages from Fragement 1
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,8 +110,15 @@ public class MainActivity extends AppCompatActivity {
             if (position == 0){ //this is creating fragments. using factory method
                 return FragmentFirst.newInstance("this", "that");//needed parameters because of the constructor in FragmentFirst.java. this is factory method
             }
+            if (position == 1){ //this is creating fragments. using factory method
+                return FragmentSecond.newInstance("this", "that");//needed parameters because of the constructor in FragmentFirst.java. this is factory method
+            }
+            if (position == 2){ //this is creating fragments. using factory method
+                return FragmentThird.newInstance("this", "that");//needed parameters because of the constructor in FragmentFirst.java. this is factory method
+            }
 
-            return PlaceholderFragment.newInstance(position + 1);
+            return(null);
+
         }
 
         @Override
